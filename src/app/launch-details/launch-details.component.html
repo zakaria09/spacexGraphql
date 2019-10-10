@@ -1,0 +1,28 @@
+<button mat-raised-button color="secondary" (click)="router.navigate([''])">Back</button>
+<ng-container *ngIf="launchDetails$ | async as launchDetails">
+  <section class="launch_info">
+    <mat-card class="info_card">
+      <mat-card-header>
+        <mat-card-title>{{ launchDetails.mission_name }}</mat-card-title>
+      </mat-card-header>
+      <img
+        height="256"
+        width="256"
+        mat-card-image
+        [src]="launchDetails.links.mission_patch"
+      />
+      <mat-card-content>
+        <p>{{ launchDetails.details }}</p>
+      </mat-card-content>
+    </mat-card>
+  </section>
+  <section class="photo-grid">
+    <img
+      *ngFor="let pic of launchDetails.links.flickr_images"
+      [src]="pic"
+      height="300"
+      width="300"
+      loading="lazy"
+    />
+  </section>
+</ng-container>
